@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+    http://www.springframework.org/schema/util  
+    http://www.springframework.org/schema/util/spring-util-4.3.xsd
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+ 	
+ 	
+ 	<!-- 使用注解 自动扫描下列包下的bean  -->
+ 	<context:component-scan base-package="com.ssh.hui."/>
+ 	
+ 	
+ 	<!-- <context:property-placeholder location="classpath:/db.properties"/>-->
+ 	<!--lazy-init(延迟加载)，scope(作用域)-->
+ 	
+ 	<!-- 定义数据库配置 -->
+ 	<bean  id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+  		<property name="locations" value="classpath:hibernate/dbconf.properties"/>
+	</bean>
+ 	<!-- 定义数据库源bean，使用c3p0实现，并注入必要信息 -->
+ 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+ 		destroy-method="close"
+		p:driverClass="${driverClassName}"
+		p:jdbcUrl="${url}" 
+		p:user="${username}" 
+ 		p:password="${password}"
+		p:maxPoolSize="40"
+		p:minPoolSize="2"
+		p:initialPoolSize="2"
+		p:maxIdleTime="30"
+ 	/>
+ 	<!-- 定义hibernate工厂 -->
+ 	<bean id="sessionFactory" 
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<!-- annotatedClasses用来列出所有持久化类  -->
+		<property name="annotatedClasses">
+			<list>
+				<value>com.ssh.hui.po.Guitar</value>
+			</list>
+		</property>
+		<!-- 定义hibernate工厂属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">com.ssh.hui.util.SQLiteDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop> 
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 定义hibernate事务管理器  p:sessionFactory-ref对应hibernate工厂-->
+ 	<bean id="transactionManager" class=
+		"org.springframework.orm.hibernate5.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory"
+	/>	
+	
+	<!-- 定义hibernate局部事务增强处理器  对应事务管理器-->	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!--AOP配置-->
+  	<aop:config>
+  		<!--配置切入点-->
+		<aop:pointcut id="huiPointcut"
+			expression="execution(* com.ssh.hui.service.impl.*.*(..))"
+		/>
+		<!--配置指定在切入点使用txAdvice事务增强器-->	
+		<aop:advisor advice-ref="txAdvice"
+			pointcut-ref="huiPointcut"
+		/>
+	</aop:config>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </beans>
+ 
+ 

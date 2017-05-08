@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定struts2的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+	<!-- struts2默认跳转 -->
+    <package name="default" namespace="/" extends="struts-default">
+    	<!-- 定义处理请求URL为所有的Action -->
+        <action name="*">
+        <!-- 定义处理结果字符串和资源之间的映射关系 -->
+            <result >/WEB-INF/content/{1}.jsp</result>
+        </action>
+    </package>
+    
+	        
+    
+    <!-- 在Struts2中可以将一个配置文件分解成多个配置文件，那么我们必须在struts.xml中包含其他配置文件。 -->
+    <!-- 基础管理 -->
+	<include file="struts-config/struts-base.xml"></include>
+</struts>
