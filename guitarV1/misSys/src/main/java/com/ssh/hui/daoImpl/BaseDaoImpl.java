@@ -12,7 +12,6 @@ import javax.annotation.Resource;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 

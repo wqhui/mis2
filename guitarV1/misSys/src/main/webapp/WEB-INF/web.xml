@@ -12,13 +12,13 @@
 		<!-- 配置Struts2核心Filter的名字 -->	
 		<filter-name>struts2</filter-name>
 		<!-- 配置Struts2核心Filter的实现类 -->  
-		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>	
 	
 	<!-- 定义Spring保持session的Filter 默认的去找bean的id为sessionfactory的bean-->	
  	<filter>
 	  	<filter-name>openSessionInView</filter-name>
-	  	<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+	  	<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
  	</filter>
  	
  	<!-- 定义Struts2拦截所有请求 -->	

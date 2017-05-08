@@ -3,6 +3,7 @@ package com.ssh.hui.action;
 import java.util.List;
 import java.util.UUID;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.ssh.hui.po.Guitar;
 
 import net.sf.json.JSONArray;
@@ -28,9 +29,15 @@ public class GuitarAction extends BaseAction<Guitar>{
      */
     public String queryGuitarList() {
         Guitar gtar=new Guitar();
+        gtar.setBackWood(backWood);
+        gtar.setBuilder(builder);
+        gtar.setModel(guitarModel);
+        gtar.setPrice(price);
+        gtar.setTopWood(topWood);
+        gtar.setType(type);
         List<Guitar> guitarList=guitarService.queryGuitarListByGuitar(gtar);
-        return "jsonArray";
-        
+        ActionContext.getContext().put("guitarList", guitarList);
+        return "resultJsp";        
     }
     
     /**

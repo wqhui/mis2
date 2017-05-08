@@ -7,8 +7,9 @@
 <title>主页</title>
 </head>
 <body>
-    <center><h3>查询guitar</h3></center>
+    <center><h3 id="guitarTitle">查询guitar</h3></center>
     <hr>
+    <div id="resultGuitarList">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3">
@@ -42,13 +43,13 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="backWood" class="col-sm-2 control-label">backWood：</label>
+                    <label for="backWood" class="col-sm-2 control-label">背板：</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="backWood" placeholder="">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="topWood" class="col-sm-2 control-label">topWood：</label>
+                    <label for="topWood" class="col-sm-2 control-label">指板：</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="topWood" placeholder="">
                     </div>
@@ -60,7 +61,7 @@
             </div>       
         </div>
      </div>   
-     
+     </div>
 </body>
 <script type="text/javascript">
  function submitSearch(){
@@ -70,8 +71,7 @@
 	    var type=$('#type').val();
 	    var backWood=$('#backWood').val();
 	    var topWood=$('#topWood').val();
-	    if(price=="" || builder=="" || model=="" || type=="" || backWood=="" || topWood==""){
-	    	console.log(typeof(price)=="undefined");
+	    if(price=="" && builder=="" && model=="" && type=="" && backWood=="" && topWood==""){
 	    	$("#error p").append("请至少保证一个条件不为空！");
         	$('#error').fadeIn('slow');
 			setTimeout(function(){
@@ -91,13 +91,26 @@
 		    		topWood:topWood
 		    	},
 		    	success:function(data){    
-		    		
+		    		$('#resultGuitarList').html(data); 
+		    		$('#guitarTitle').html("guitar查询列表");
+		    		/*
+		    		var url = location.pathname;
+		    		url=url+"resultList";
+		    		console.log(url);
+		            history.replaceState({
+		                url : url
+		            },'',url);
+		            */
 		    	},
 		    })	 
 		    
 	    }
 	    
  }
+ 
+ $(function(){
+	 
+ })
 </script>
 
 </html>

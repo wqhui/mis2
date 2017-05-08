@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 指定struts2的DTD信息 -->
 <!DOCTYPE struts PUBLIC
-	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-	"http://struts.apache.org/dtds/struts-2.5.dtd">
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
 	<!-- struts2默认跳转 -->
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="hui" namespace="/" extends="struts-default">
     	<!-- 定义处理请求URL为所有的Action -->
         <action name="*">
         <!-- 定义处理结果字符串和资源之间的映射关系 -->
-            <result >/WEB-INF/content/{1}.jsp</result>
+            <result>/WEB-INF/content/{1}.jsp</result>
         </action>
     </package>
+    
     
 	        
     
