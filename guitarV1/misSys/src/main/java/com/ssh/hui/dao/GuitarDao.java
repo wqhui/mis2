@@ -8,7 +8,9 @@ import net.sf.json.JSONArray;
 
 public interface GuitarDao extends BaseDao<Guitar>{
 
-	List<Guitar> queryGuitarListByGuitar(Guitar gtar);
+
+	List<Guitar> queryGuitarListByGuitar(String backWood, String builder, String guitarModel, double price,
+			String topWood, String type);
 
 
 }

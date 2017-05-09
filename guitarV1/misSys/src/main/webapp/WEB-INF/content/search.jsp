@@ -71,7 +71,11 @@ if (history.pushState) {
 	   if(location.href.indexOf("#")==-1){
 		   	$('#guitarTitle').html("查询guitar");
 	  		$('#searchFormArea').show();
-			$('#resultGuitarList').html('');	
+			$('#resultGuitarList').html('');
+			var url = location.pathname;
+            history.replaceState({
+                url : url
+            },'查询guitar',url);
 		}
 	   else{
 		   submitSearch()	   

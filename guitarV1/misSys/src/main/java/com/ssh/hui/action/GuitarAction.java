@@ -28,14 +28,7 @@ public class GuitarAction extends BaseAction<Guitar>{
      * @return GuitarList
      */
     public String queryGuitarList() {
-        Guitar gtar=new Guitar();
-        gtar.setBackWood(backWood);
-        gtar.setBuilder(builder);
-        gtar.setModel(guitarModel);
-        gtar.setPrice(price);
-        gtar.setTopWood(topWood);
-        gtar.setType(type);
-        List<Guitar> guitarList=guitarService.queryGuitarListByGuitar(gtar);
+        List<Guitar> guitarList=guitarService.queryGuitarListByGuitar(backWood,builder,guitarModel,price,topWood,type);
         ActionContext.getContext().put("guitarList", guitarList);
         return "resultJsp";        
     }

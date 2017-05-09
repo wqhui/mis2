@@ -15,10 +15,14 @@ import net.sf.json.JSONArray;
 @Service("guitarService")
 public class GuitarServiceImpl extends BaseServiceImpl<Guitar> implements GuitarService{
 
-    @Override
-    public List<Guitar> queryGuitarListByGuitar(Guitar gtar) {        
-        return guitarDao.queryGuitarListByGuitar(gtar);
-    }
+
+	@Override
+	public List<Guitar> queryGuitarListByGuitar(String backWood, String builder, String guitarModel, double price,
+			String topWood, String type) {
+		// TODO Auto-generated method stub
+		return guitarDao.queryGuitarListByGuitar(backWood, builder, guitarModel, price,
+				topWood,type);
+	}
 
 
 
