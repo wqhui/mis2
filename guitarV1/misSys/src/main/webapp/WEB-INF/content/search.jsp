@@ -4,12 +4,14 @@
 <html>
 <head>
 <%@include file="/public/website-head.jspf"%>
-<title>插入guitar</title>
+<title>guitar</title>
 </head>
 <body>
-    <center><h3>插入guitar</h3></center>
+    <center><h3 id="guitarTitle">查询guitar</h3></center>
     <hr>
-    <div class="container">
+    <div id="resultGuitarList">
+    </div>
+    <div class="container" id="searchFormArea">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3">
             <form class="form-horizontal" role="form">
@@ -56,13 +58,28 @@
                 </form>
             </div>
             <div class="col-xs-10 col-sm-4 col-sm-offset-4">
-                <button type="button" class="btn btn-primary btn-block" onclick="submitSearch()">插入</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="submitSearch()">查询</button>
             </div>       
         </div>
      </div>   
-     
 </body>
 <script type="text/javascript">
+
+	//回退监听
+if (history.pushState) {	
+	window.addEventListener("popstate", function() {
+	   if(location.href.indexOf("#")==-1){
+		   	$('#guitarTitle').html("查询guitar");
+	  		$('#searchFormArea').show();
+			$('#resultGuitarList').html('');	
+		}
+	   else{
+		   submitSearch()	   
+	   }
+	});
+}
+ 
+ 
  function submitSearch(){
 	    var price=$('#price').val();
 	    var builder=$('#builder').val();
@@ -70,8 +87,8 @@
 	    var type=$('#type').val();
 	    var backWood=$('#backWood').val();
 	    var topWood=$('#topWood').val();
-	    if(price=="" || builder=="" || model=="" || type=="" || backWood=="" || topWood==""){
-	    	$("#error p").append("请保证不为空！");
+	    if(price=="" && builder=="" && model=="" && type=="" && backWood=="" && topWood==""){
+	    	$("#error p").append("请至少保证一个条件不为空！");
         	$('#error').fadeIn('slow');
 			setTimeout(function(){
 				$('#error').fadeOut('slow');
@@ -79,7 +96,7 @@
 			},2000)
 	    }else{	    	
 	    	$.ajax({	
-		    	url:'${pageContext.request.contextPath}/base/guitar_save.action',
+		    	url:'${pageContext.request.contextPath}/base/guitar_queryGuitarList.action',
 		    	type:'POST',
 		    	data:{
 		    		price:price,	 
@@ -89,14 +106,23 @@
 		    		backWood:backWood,
 		    		topWood:topWood
 		    	},
-		    	success:function(data){    
-		    		
+		    	success:function(data){  
+		    		$('#searchFormArea').hide();
+		    		$('#resultGuitarList').html(data); 		    		
+		    		$('#guitarTitle').html("guitar查询列表");
+		    		var url = location.pathname;		    		
+		    		url=url+"#!/result";
+		            history.pushState({
+		                url : url
+		            },'guitar查询结果',url);
+
 		    	},
 		    })	 
 		    
 	    }
 	    
  }
+ 
 </script>
 
 </html>
