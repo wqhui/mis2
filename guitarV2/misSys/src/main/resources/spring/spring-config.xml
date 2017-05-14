@@ -7,15 +7,15 @@
 	xmlns:p="http://www.springframework.org/schema/p" 
 	xmlns:tx="http://www.springframework.org/schema/tx" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 	http://www.springframework.org/schema/context  
-    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/aop  
-    http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     http://www.springframework.org/schema/util  
-    http://www.springframework.org/schema/util/spring-util-4.2.xsd
+    http://www.springframework.org/schema/util/spring-util-4.0.xsd
     http://www.springframework.org/schema/tx 
-    http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
  	
  	
  	<!-- 使用注解 自动扫描下列包下的bean  -->
@@ -49,6 +49,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.ssh.hui.po.Guitar</value>
+				<value>com.ssh.hui.po.spec.GuitarSpec</value>
 			</list>
 		</property>
 		<!-- 定义hibernate工厂属性 -->
@@ -72,7 +73,7 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
-			<tx:method name="*" propagation="REQUIRED"/>
+			<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	

@@ -4,13 +4,14 @@
 *****************************************************************************/
 package com.ssh.hui.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface BaseService<T> {
     //根据id查询实体
     T get(int id);
     //保存实体
-    void save(T entity);    
+    Serializable  save(T entity);    
     //更新实体
     void update(T entity);
     //删除实体   

@@ -5,20 +5,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.ssh.hui.po.spec.GuitarSpec;
 
 @Entity
 @Table(name="guitar")
 public class Guitar {
+    
+    private Integer id;
     private String serialNumber;//序列号
     private double price;//价格
-    private String builder;//厂家
-    private String model;
-    private String type;
-    private String backWood;//后盖
-    private String topWood;//...
+    private GuitarSpec spec;//封装变化
+    public Guitar() {
+        //...空构造
+    }
+    public Guitar(String serialNumber, double price, GuitarSpec spec) {
+        this.serialNumber = serialNumber;
+        this.price = price;
+        this.spec = spec;
+    }
+    
     
     @Id
+    @GeneratedValue(generator = "id")
+    @GenericGenerator(name = "id", strategy = "increment")
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
     @Column(name="guitar_serial_number")
     public String getSerialNumber() {
         return serialNumber;
@@ -33,40 +53,13 @@ public class Guitar {
     public void setPrice(double price) {
         this.price = price;
     }
-    @Column(name="guitar_builder")
-    public String getBuilder() {
-        return builder;
+
+    @OneToOne
+    public GuitarSpec getSpec() {
+        return spec;
     }
-    public void setBuilder(String builder) {
-        this.builder = builder;
-    }
-    @Column(name="guitar_model")
-    public String getModel() {
-        return model;
-    }
-    public void setModel(String model) {
-        this.model = model;
-    }
-    @Column(name="guitar_type")
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
-    @Column(name="guitar_back_wood")
-    public String getBackWood() {
-        return backWood;
-    }
-    public void setBackWood(String backWood) {
-        this.backWood = backWood;
-    }
-    @Column(name="guitar_top_wood")
-    public String getTopWood() {
-        return topWood;
-    }
-    public void setTopWood(String topWood) {
-        this.topWood = topWood;
+    public void setSpec(GuitarSpec spec) {
+        this.spec = spec;
     }
 
 }

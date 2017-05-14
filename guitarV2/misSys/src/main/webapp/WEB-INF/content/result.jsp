@@ -24,12 +24,12 @@
           <tbody>
           	<s:iterator value="guitarList" var="gList">
 	          	<tr>
-	              <td>${gList.type}</td>
-	              <td>${gList.model}</td>
+	              <td>${gList.spec.type}</td>
+	              <td>${gList.spec.model}</td>
 	              <td>${gList.price}</td>
-	              <td>${gList.builder}</td>
-	              <td>${gList.backWood}</td>
-	              <td>${gList.topWood}</td>
+	              <td>${gList.spec.builder}</td>
+	              <td>${gList.spec.backWood}</td>
+	              <td>${gList.spec.topWood}</td>
 	            </tr>
           	</s:iterator>
           </tbody>

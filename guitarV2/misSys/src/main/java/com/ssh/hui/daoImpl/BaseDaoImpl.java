@@ -4,6 +4,7 @@
 *****************************************************************************/
 package com.ssh.hui.daoImpl;
 
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -47,13 +48,10 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
     * @return ֵ
     */
     @Override
-    public void save(T entity) {
-        try{
-            getSession().save(entity); 
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-        
+    public Serializable save(T entity) {
+        System.out.println("保存"+entity);
+        getSession().saveOrUpdate(entity);
+          return "ok";       
     }
     
     /**

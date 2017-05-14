@@ -4,6 +4,7 @@
 *****************************************************************************/
 package com.ssh.hui.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface BaseDao<T> {
@@ -18,7 +19,7 @@ public interface BaseDao<T> {
       * save entity
      * @param entityֵ
      */
-     void save(T entity);
+     Serializable save(T entity);
      
      /**
       * update entity

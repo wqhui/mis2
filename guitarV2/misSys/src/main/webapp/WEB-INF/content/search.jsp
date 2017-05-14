@@ -28,31 +28,47 @@
                   <div class="form-group">
                     <label for="builder" class="col-sm-2 control-label">厂商：</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="builder" placeholder="">
+                        <select class="form-control" name="builder" id="builder">
+        				  <option value="JIANGSU">江苏</option>
+        				  <option value="BEIJING">北京</option>
+        				  <option value="GUANGZHOU">广州</option>
+        				</select>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="model" class="col-sm-2 control-label">型号：</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="model" placeholder="">
+                      <input type="text" class="form-control" id="model" value="0" readonly>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="type" class="col-sm-2 control-label">类型：</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="type" placeholder="">
+                      	<select class="form-control" name="type" id="type">
+        				  <option value="ACOUSTIC">木制</option>
+        				  <option value="ELECTRIC">电吉他</option>
+        				  <option value="UNSPECIFIED">未指定</option>
+        				</select>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="backWood" class="col-sm-2 control-label">背板：</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="backWood" placeholder="">
+                        <select class="form-control" name="backWood" id="backWood">
+        				  <option value="CAMPHOR">樟木</option>
+        				  <option value="BRICH">桦木</option>
+        				  <option value="KOREANPINE">红松</option>
+        				</select>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="topWood" class="col-sm-2 control-label">指板：</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="topWood" placeholder="">
+                        <select class="form-control" name="topWood" id="topWood">
+        				  <option value="CAMPHOR">樟木</option>
+        				  <option value="BRICH">桦木</option>
+        				  <option value="KOREANPINE">红松</option>
+        				</select>
                     </div>
                   </div>
                 </form>
@@ -87,6 +103,7 @@ if (history.pushState) {
 	    var type=$('#type').val();
 	    var backWood=$('#backWood').val();
 	    var topWood=$('#topWood').val();
+	    
 	    if(price=="" && builder=="" && model=="" && type=="" && backWood=="" && topWood==""){
 	    	$("#error p").append("请至少保证一个条件不为空！");
         	$('#error').fadeIn('slow');
@@ -120,6 +137,7 @@ if (history.pushState) {
 		    })	 
 		    
 	    }
+	    
 	    
  }
  

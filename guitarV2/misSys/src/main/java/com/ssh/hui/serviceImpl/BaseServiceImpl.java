@@ -6,6 +6,7 @@ package com.ssh.hui.serviceImpl;
 
 
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -66,8 +67,8 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 
     @SuppressWarnings("unchecked")
     @Override
-    public void save(T t) {
-        baseDao.save(t);        
+    public Serializable  save(T t) {
+        return baseDao.save(t);        
     }
 
     @Override
