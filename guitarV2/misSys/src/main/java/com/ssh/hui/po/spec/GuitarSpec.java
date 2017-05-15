@@ -3,6 +3,7 @@ package com.ssh.hui.po.spec;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -51,8 +52,8 @@ public class GuitarSpec {
         }
     
     @Id
-    @GeneratedValue(generator = "id")
-    @GenericGenerator(name = "id", strategy = "increment")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
     public Integer getId() {
         return id;
     }

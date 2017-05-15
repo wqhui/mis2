@@ -19,7 +19,7 @@
  	
  	
  	<!-- 使用注解 自动扫描下列包下的bean  -->
- 	<context:component-scan base-package="com.ssh.hui."/>
+ 	<context:component-scan base-package="com.ssh.hui.."/>
  	
  	
  	<!-- <context:property-placeholder location="classpath:/db.properties"/>-->
