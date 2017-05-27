@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4"
+ xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ 	<context-param>
+		<!--指定配置文件的位置-->
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:spring/spring-config*.xml</param-value>
+	</context-param>
+	
+	<!-- 切换数据库 -->
+	<context-param>  
+        <param-name>spring.profiles.active</param-name>  
+        <param-value>sqlite</param-value> 
+         <!--<param-value>mysql</param-value> --> 
+	</context-param> 
+	
+ 	<!-- 定义Struts2核心Filter -->	
+	<filter>
+		<!-- 配置Struts2核心Filter的名字 -->	
+		<filter-name>struts2</filter-name>
+		<!-- 配置Struts2核心Filter的实现类 -->  
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>	
+	
+	<!-- 定义Spring保持session的Filter 默认的去找bean的id为sessionfactory的bean-->	
+ 	<filter>
+	  	<filter-name>openSessionInView</filter-name>
+	  	<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+ 	</filter>
+ 	
+ 	<!-- 定义Struts2拦截所有请求 -->	
+ 	<filter-mapping>
+  		<filter-name>openSessionInView</filter-name>
+  		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+ 	<filter-mapping>
+  		<filter-name>struts2</filter-name>
+  		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+	
+	<!-- 使用ContextLoaderListener初始化Spring容器 -->	 
+	<listener>
+		<!--加载配置-->
+	 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<welcome-file-list>
+	 	<welcome-file>/WEB-INF/content/index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
