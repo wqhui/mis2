@@ -33,8 +33,8 @@
  		destroy-method="close"
 		p:driverClass="${driverClassName}"
 		p:jdbcUrl="${url}" 
-		p:user="${username}" 
- 		p:password="${password}"
+		p:user="root" 
+ 		p:password="123456"
 		p:maxPoolSize="40"
 		p:minPoolSize="2"
 		p:initialPoolSize="2"
@@ -98,12 +98,6 @@
     <beans profile="mysql">
         <context:property-placeholder location="classpath:hibernate/dbMysqlConf.properties" />
     </beans>
- 
- 
- 
- 
- 
- 
  </beans>
  
  
