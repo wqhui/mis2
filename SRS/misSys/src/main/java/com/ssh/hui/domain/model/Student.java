@@ -312,6 +312,19 @@ public class Student{
 	public void printTranscript() {
 		this.getTranscript().display();
 	}
+
+	/**
+	 * 和原始student比较密码
+	 * */
+	public boolean loginJudgment(Student s) {		
+		if(null!= s&& null!=s.getPassword()){
+			if(password.equals(s.getPassword())){
+
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 

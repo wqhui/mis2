@@ -13,4 +13,10 @@ import com.ssh.hui.domain.model.Student;
 @Repository("studentDao")
 public class StudentDaoImpl extends BaseDaoImpl<Student> implements StudentDao{
 
+	@Override
+	public Student getUniqueByT(Student s) {
+		String hql="select s from Student s where s.loginName=:loginName";			 
+		return (Student) getSession().createQuery(hql).setString("loginName", s.getLoginName()).uniqueResult();
+	}
+
 }

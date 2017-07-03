@@ -6,7 +6,7 @@ var Login = function () {
 	            errorClass: 'help-block', // default input error message class
 	            focusInvalid: false, // do not focus the last invalid input
 	            rules: {
-	                username: {
+	            	username: {
 	                    required: true
 	                },
 	                password: {
@@ -18,7 +18,7 @@ var Login = function () {
 	            },
 
 	            messages: {
-	                username: {
+	            	username: {
 	                    required: "必须输入用户名"
 	                },
 	                password: {
@@ -49,15 +49,15 @@ var Login = function () {
 	            	$('#error').html('<div class="panel-heading"></div>').hide();
 	            	$.ajax({  
 	                    type: 'post',  
-	                    url: "/plan/preplan/preplan_person_login.action", 
+	                    url: '/misSys/base/student_login.action', 
+	                    dataType:'json',
 	                    data:{
-                            username:$('#username').val(),
+	                    	loginName:$('#username').val(),
                             password:$('#password').val()
                         },
 	                    success:function(data){
-	                    	//console.log(data=="\"ok\"");
-                            if(data=="\"ok\""){
-                                location.href ="/plan/preplan/plan_index.action";   
+	                    	if(data.status=="ok"){
+                            	location.href ="/misSys/base/home";   
                             }else{
                                 $("#error div").append("用户名或密码错误！");
                                 $('#error').fadeIn('slow');

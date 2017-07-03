@@ -108,10 +108,13 @@
 			
 			function goNext(){
 				　var myName="<%=session.getAttribute("professor")%>"; 
-					if(myName==="null"){
-						
-					}else{						
+				　var uName="<%=session.getAttribute("student")%>"; 
+					if(myName!=="null"){
 						location.href ="/misSys/base/back_index";   
+					}else if(uName!=="null"){
+						location.href ="/misSys/base/home";   
+					}else{						
+						
 					}
 			}
 			

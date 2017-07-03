@@ -9,4 +9,6 @@ import com.ssh.hui.domain.model.Student;
  **/
 public interface StudentDao extends BaseDao<Student>{
 
+	Student getUniqueByT(Student s);
+
 }

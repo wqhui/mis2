@@ -3,6 +3,8 @@ package com.ssh.hui.action;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.ssh.hui.domain.model.Department;
 import com.ssh.hui.domain.model.PlanOfStudy;
 import com.ssh.hui.domain.model.Section;
@@ -27,6 +29,8 @@ public class StudentAction extends BaseAction<Student>{
 	private JSONArray jsonArray = new JSONArray();
 	
 	private int id;
+	private int sectionId;
+	private int courseId;
 	private String ssn;
 	private String realName;
 	private String loginName;
@@ -39,12 +43,70 @@ public class StudentAction extends BaseAction<Student>{
 	private PlanOfStudy planOfStudy;
 	private Department department;
 	
+	/**
+	 * 登录
+	 * @param loginName
+	 * @param password
+	 * @return
+	 */
+	public String login(){
+		jsonObject.put("status", "error");
+		System.out.println(loginName+":"+password);
+		if(null==loginName||null==password||loginName.equals("") || password.equals("")){
+			
+		}else{			
+			Student s=new Student();
+			s.setLoginName(loginName);
+			s.setPassword(password);
+			Student st=studentService.loginJudgment(s);
+			if(null!=st){
+				jsonObject.put("status", "ok");
+				session.put("student",st);//放入session
+				session.put("studentId", st.getId());
+			}
+		}
+		return "jsonObject";
+	}
+	
+	/**
+	 * 退出登录
+	 * @return
+	 */
+	public String loginOut(){
+		try {
+			session.clear();
+			ServletActionContext.getRequest().getSession().invalidate();
+			jsonObject.put("status", "ok");
+		} catch (Exception e) {
+			e.printStackTrace();
+			jsonObject.put("status", "error");
+		}
+		
+		return "jsonObject";
+	}
 	
 	
-	
-	
-	
-	
+	/**
+	 * 选课
+	 * @return
+	 */
+	public String chooseCourse(){
+		try {
+			if(sectionId>0){
+				Student s=new Student();
+				id=(int) session.get("studentId");
+				System.out.println(id);
+				s.setId(id);
+				studentService.chooseCourse(s,sectionId);
+				jsonObject.put("status", "ok");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			jsonObject.put("status", "error");
+		}
+
+		return "jsonObject";
+	}
 	
 	
 	public JSONObject getJsonObject() {
@@ -124,6 +186,22 @@ public class StudentAction extends BaseAction<Student>{
 	}
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
+	public int getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
 	}
 	
 	
