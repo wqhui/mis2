@@ -15,22 +15,29 @@
 ![后台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/pro_login.png)
 
 - 教师管理
+
 ![后台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/professor.png)
 
 - 课程管理
+
 ![课程管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/course.png)
 
 - 学习计划管理
+
 ![学习计划管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/plan.png)
 
 - section管理
+
 ![section管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/section.png)
 
 - section管理
+
 ![section管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/section.png)
 
 - 前台登录
+
 ![前台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_login.png)
 
 - 前台选课
+
 ![前台选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_section.png)
