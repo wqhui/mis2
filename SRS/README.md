@@ -4,14 +4,33 @@
 ![修改1](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/11.png)
 ![修改2](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/12.png)
 
-二、查询界面
+二、数据库
 ------- 
-![查询界面](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/31.png)
+![数据库](https://github.com/DeathKL/mis2/blob/master/SRS/Img/database.png)
 
-三、查询结果界面
+四、运行界面
 ------- 
-![查询结果界面](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/3.png)
+- 后台登录（默认用户名：sa 密码：1）
 
-四、列表界面（删除）
-------- 
-![列表界面](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/2.png)
+![后台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/pro_login.png)
+
+- 教师管理
+![后台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/professor.png)
+
+- 课程管理
+![课程管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/course.png)
+
+- 学习计划管理
+![学习计划管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/plan.png)
+
+- section管理
+![section管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/section.png)
+
+- section管理
+![section管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/section.png)
+
+- 前台登录
+![前台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_login.png)
+
+- 前台选课
+![前台选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_section.png)
