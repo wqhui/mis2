@@ -20,6 +20,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 @Entity
 @Table(name="transcript")
 public class Transcript {
@@ -147,5 +150,26 @@ public class Transcript {
 //					   te.getGrade());
 //			System.out.println("\t-----");
 		}
+	}
+
+	/**
+	 * 成绩单列表
+	 * @return
+	 */
+	public JSONObject toJSONObjectTE() {
+		JSONObject rjo=new JSONObject();
+		JSONArray ja=new JSONArray();
+		for(TranscriptEntry t : transcriptEntries){
+			JSONObject jo=new JSONObject();
+			jo.put("id", t.getId());			
+			jo.put("courseName", t.getSection().getRepresentedCourse().getCourseName());
+			jo.put("courseCredits", t.getSection().getRepresentedCourse().getCredits());
+			jo.put("professorName", t.getSection().getInstructor().getRealName());
+			jo.put("grade", t.getGrade());
+			ja.add(jo);
+		}
+		rjo.put("recordsTotal", transcriptEntries.size());
+		rjo.put("data", ja.toString());
+		return rjo;
 	}
 }

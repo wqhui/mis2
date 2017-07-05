@@ -1,6 +1,8 @@
 package com.ssh.hui.domain.model;
 // TranscriptEntry.java - Chapter 14, Java 5 version.
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 // Copyright 2005 by Jacquie Barker - all rights reserved.
 // A MODEL class.
@@ -30,7 +35,8 @@ public class TranscriptEntry {
 	//----------------
 	// Constructor(s).
 	//----------------
-
+	public TranscriptEntry(){};
+	
 	public TranscriptEntry(Student s, String grade, Section se) {
 		//this.setStudent(s);
 		//this.setSection(se);
@@ -145,4 +151,5 @@ public class TranscriptEntry {
 
 		return outcome;
 	}
+
 }
