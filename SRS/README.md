@@ -4,11 +4,31 @@
 ![修改1](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/11.png)
 ![修改2](https://github.com/DeathKL/mis2/blob/master/guitarV3/Img/12.png)
 
-二、数据库
+二、项目结构
+------- 
+![项目结构](https://github.com/DeathKL/mis2/blob/master/SRS/Img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png)
+
+三、数据库
 ------- 
 ![数据库](https://github.com/DeathKL/mis2/blob/master/SRS/Img/database.png)
 
-四、运行界面
+四、类图
+------- 
+![类图](https://github.com/DeathKL/mis2/blob/master/SRS/Img/%E7%B1%BB%E5%9B%BE.png)
+
+
+五、时序图
+------- 
+- 选课时序图
+
+  ![选课时序图](https://github.com/DeathKL/mis2/blob/master/SRS/Img/%E9%80%89%E8%AF%BE%E6%97%B6%E5%BA%8F%E5%9B%BE.png)
+  
+- 查询成绩时序图
+
+  ![查询成绩时序图](https://github.com/DeathKL/mis2/blob/master/SRS/Img/%E6%9F%A5%E8%AF%A2%E6%88%90%E7%BB%A9%E6%97%B6%E5%BA%8F%E5%9B%BE.png)
+
+
+六、运行界面
 ------- 
 - 后台登录（默认用户名：sa 密码：1）
 
