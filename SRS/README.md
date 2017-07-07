@@ -50,14 +50,20 @@
 
 ![section管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/section.png)
 
-- section管理
+- 成绩管理
 
-![section管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/section.png)
+![成绩管理](https://github.com/DeathKL/mis2/blob/master/SRS/Img/setGrade.png)
 
-- 前台登录
 
-![前台登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_login.png)
+
+- 学生登录
+
+![学生登录](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_login.png)
 
 - 前台选课
 
-![前台选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_section.png)
+![学生选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_section.png)
+
+- 学生成绩
+
+![学生成绩](https://github.com/DeathKL/mis2/blob/master/SRS/Img/transcript.png)
