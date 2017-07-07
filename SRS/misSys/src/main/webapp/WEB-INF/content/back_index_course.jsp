@@ -235,19 +235,19 @@
 		            "targets": -1,//最后一列
 		            "data": null,
 		            render: function(data, type, row, meta) {
-		            var showHtml='<button class="btn  green" onclick="alterCourse('+row.id+')">'
-                                      +          	'<i class="fa fa-edit">编辑 </i>'
-                                      +      '</button>'
-                                      +      ' '
-                                      +		 '<button class="btn  green" onclick="addPreCourse('+row.id+',\''+row.courseName+'\')">'
-                                      +          	'<i class="fa fa-add">添加先修课程 </i>'
-                                      +      '</button>'
-                                      +      ' '
-                                      +  	 '<button  class="btn red"onclick="deleteCourse('+row.id+')">'
-                                      +  			'<i class="fa fa-times">删除</i>'
-                                      +      '</button>'            
-		            
-			            return showHtml;
+			            var showHtml='<button class="btn  green" onclick="alterCourse('+row.id+')">'
+				                        +          	'<i class="fa fa-edit">编辑 </i>'
+				                        +      '</button>'
+				                        +      ' '
+				                        +		 '<button class="btn  green" onclick="addPreCourse('+row.id+',\''+row.courseName+'\')">'
+				                        +          	'<i class="fa fa-add">添加先修课程 </i>'
+				                        +      '</button>'
+				                        +      ' '
+				                        +  	 '<button  class="btn red"onclick="deleteCourse('+row.id+')">'
+				                        +  			'<i class="fa fa-times">删除</i>'
+				                        +      '</button>'            
+      
+          				return showHtml;
 
 			        }
 		        } ],			        

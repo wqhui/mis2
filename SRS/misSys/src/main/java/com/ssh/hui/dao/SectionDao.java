@@ -1,5 +1,8 @@
 package com.ssh.hui.dao;
 
+import java.util.List;
+
+import com.ssh.hui.domain.model.Professor;
 import com.ssh.hui.domain.model.Section;
 
 /** 
@@ -8,5 +11,7 @@ import com.ssh.hui.domain.model.Section;
  * @version 1.0 
  **/
 public interface SectionDao extends BaseDao<Section>{
+
+	List<Section> queryListByProfessor(Professor instructor);
 
 }

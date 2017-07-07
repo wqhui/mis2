@@ -43,7 +43,32 @@ public class SectionAction extends BaseAction<Section>{
 		return "jsonObject";
 	}
 	
-
+	/**
+	 * 根据教师查询section
+	 * @return 列表
+	 */
+	public String queryListByProfessor(){
+		professorId=(int) session.get("professorId");
+		System.out.println(professorId);
+		if(professorId>0){
+			instructor=professorService.get(professorId);
+			if(null!=instructor){
+				jsonObject=sectionService.queryListByProfessor(instructor);
+			}
+		}
+		
+		return "jsonObject";
+	}
+	
+	
+	public String queryStuMsgListById(){
+		if(id>0){
+			jsonObject=sectionService.queryStuMsgListById(id);
+		}
+		
+		return "jsonObject";
+	}
+		
 	/**
 	 * 保存
 	 * @return

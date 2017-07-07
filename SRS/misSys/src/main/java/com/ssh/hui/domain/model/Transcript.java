@@ -165,7 +165,12 @@ public class Transcript {
 			jo.put("courseName", t.getSection().getRepresentedCourse().getCourseName());
 			jo.put("courseCredits", t.getSection().getRepresentedCourse().getCredits());
 			jo.put("professorName", t.getSection().getInstructor().getRealName());
-			jo.put("grade", t.getGrade());
+			if(null!=t.getGrade()){
+				jo.put("grade", t.getGrade());
+			}else{
+				jo.put("grade", "");
+			}
+			
 			ja.add(jo);
 		}
 		rjo.put("recordsTotal", transcriptEntries.size());

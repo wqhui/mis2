@@ -1,5 +1,6 @@
 package com.ssh.hui.dao;
 
+import com.ssh.hui.domain.model.Student;
 import com.ssh.hui.domain.model.TranscriptEntry;
 
 /** 
@@ -8,5 +9,7 @@ import com.ssh.hui.domain.model.TranscriptEntry;
  * @version 1.0 
  **/
 public interface TranscriptEntryDao extends BaseDao<TranscriptEntry>{
+
+	TranscriptEntry getByStu(Student sd);
 
 }

@@ -52,6 +52,7 @@ public class ProfessorAction extends BaseAction<Professor>{
 			if(null!=pf){
 				jsonObject.put("status", "ok");
 				session.put("professor",pf);//放入session
+				session.put("professorId", pf.getId());
 			}
 			
 		}

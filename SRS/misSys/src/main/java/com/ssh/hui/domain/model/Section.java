@@ -453,4 +453,37 @@ public class Section {
 		rjo.put("data", ja.toString());
 		return rjo;
 	}
+
+	/**
+	 * 返回secionId和课程相关
+	 * @param sList
+	 * @return
+	 */
+	public JSONObject toJSONObjectCourseList(List<Section> sList) {
+
+		JSONObject rjo=new JSONObject();
+		JSONArray ja=new JSONArray();
+		for(Section s:sList){
+			JSONObject jo=new JSONObject();
+			jo.put("sectionId", s.getId());
+			representedCourse=s.getRepresentedCourse();
+			if(null!=representedCourse){
+				jo.put("courseId", representedCourse.getId());
+				jo.put("courseNo", representedCourse.getCourseNo());
+				jo.put("courseName", representedCourse.getCourseName());
+				jo.put("credits", representedCourse.getCredits());
+				if(null!=representedCourse.getCourseCatalog()){
+					jo.put("courseCatalogName",representedCourse.getCourseCatalog().getCatalogName());
+				}else{
+					jo.put("courseCatalogName","其他");
+				}
+			}
+			ja.add(jo);
+		}
+		
+		rjo.put("recordsTotal", sList.size());
+		rjo.put("data", ja.toString());
+		return rjo;
+	}
+
 }

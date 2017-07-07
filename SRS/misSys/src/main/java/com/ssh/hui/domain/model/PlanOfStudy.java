@@ -101,6 +101,12 @@ public class PlanOfStudy {
 		this.theDepartment = theDepartment;
 	}
 
+	
+	
+	
+	//-----------------------------
+	// Miscellaneous other methods.
+	//-----------------------------
 	/**
 	 * 装配列表
 	 * @param pList
@@ -165,10 +171,5 @@ public class PlanOfStudy {
 
 		return false;
 	}
-	
-	
-	//-----------------------------
-	// Miscellaneous other methods.
-	//-----------------------------
 	
 }

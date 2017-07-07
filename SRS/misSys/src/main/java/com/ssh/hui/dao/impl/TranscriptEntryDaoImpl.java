@@ -3,6 +3,7 @@ package com.ssh.hui.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import com.ssh.hui.dao.TranscriptEntryDao;
+import com.ssh.hui.domain.model.Student;
 import com.ssh.hui.domain.model.TranscriptEntry;
 
 /** 
@@ -12,5 +13,11 @@ import com.ssh.hui.domain.model.TranscriptEntry;
  **/
 @Repository("transcriptEntryDao")
 public class TranscriptEntryDaoImpl extends BaseDaoImpl<TranscriptEntry> implements TranscriptEntryDao{
+
+	@Override
+	public TranscriptEntry getByStu(Student sd) {
+		String hql="select t from TranscriptEntry t where t.student=:student";
+		return (TranscriptEntry) getSession().createQuery(hql).setParameter("student", sd).uniqueResult();
+	}
 
 }

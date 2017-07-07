@@ -30,7 +30,7 @@ public class TranscriptEntry {
 	private String grade;//成绩
 	private Section section;
 	private Transcript transcript;
-	
+	private Student student;
 
 	//----------------
 	// Constructor(s).
@@ -39,9 +39,10 @@ public class TranscriptEntry {
 	
 	public TranscriptEntry(Student s, String grade, Section se) {
 		//this.setStudent(s);
-		//this.setSection(se);
+		this.setSection(se);
 		this.setGrade(grade);
-
+		this.setStudent(s);
+		
 		// Obtain the Student's transcript ...
 
 		Transcript t = s.getTranscript();
@@ -93,6 +94,16 @@ public class TranscriptEntry {
 		this.transcript = transcript;
 	}
 	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
+	@JoinColumn(name="student_id",referencedColumnName="id")
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	
 
 	//-----------------------------
 	// Miscellaneous other methods.
@@ -102,6 +113,8 @@ public class TranscriptEntry {
 	// may be used as utility methods.
 
 	
+
+
 	/**
 	 * 验证成绩是否合法
 	 * 

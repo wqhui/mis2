@@ -108,6 +108,24 @@ public class StudentAction extends BaseAction<Student>{
 		return "jsonObject";
 	}
 	
+	/**
+	 * 查看成绩
+	 * @return
+	 */
+	public String getTranscriptByStu(){
+			id=(int) session.get("studentId");
+			
+			if(id>0){
+				Student s=studentService.get(id);
+				jsonObject=studentService.getTranscriptByStu(s);
+			}else{
+				jsonObject.put("recordsTotal", 0);
+				jsonObject.put("data", "[]");
+			}
+
+
+		return "jsonObject";
+	}
 	
 	public JSONObject getJsonObject() {
 		return jsonObject;
