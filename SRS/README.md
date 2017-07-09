@@ -27,8 +27,53 @@
 
   ![查询成绩时序图](https://github.com/DeathKL/mis2/blob/master/SRS/Img/%E6%9F%A5%E8%AF%A2%E6%88%90%E7%BB%A9%E6%97%B6%E5%BA%8F%E5%9B%BE.png)
 
+六、选课逻辑
+------- 
+  
+```
+	public JSONObject chooseCourse(Student s, int sectionId) {	
+		JSONObject jo=new JSONObject();			
+		jo.put("status", "ok");
+		Section st=sectionDao.get(sectionId);//获得该section
+		int capacitySize=st.getSeatingCapacity();
+		PlanOfStudy pos=planOfStudyDao.getByStu(s);
+		if(pos.isPlanCourse(st.getRepresentedCourse())){
+			if(capacitySize>0){//是否有余量
+				st.setSeatingCapacity(capacitySize-1);//余量-1
+				Course crs= st.getRepresentedCourse();
+				if(courseSpecificationImpl.hasPrerequisites(crs)){//判断是否有先修课
+					if(courseSpecificationImpl.isPassPrerequisites(crs.getPrerequisites(),s)){
+						Student ns=studentDao.get(s.getId());
+						sectionDao.update(st);
+						ns.addSection(st);
+						transcriptEntryDao.save(new TranscriptEntry(ns,null,st));						
+						studentDao.update(ns);					
+					}else{
+						jo.put("status", "noPass");
+					}
+					
+				}else{
+					Student ns=studentDao.get(s.getId());
+					sectionDao.update(st);
+					ns.addSection(st);
+					transcriptEntryDao.save(new TranscriptEntry(ns,null,st));						
+					studentDao.update(ns);				
+				};
+			}else{
+				jo.put("status", "noCapacity");
+				
+			}
+		}else{
+			jo.put("status", "noPlan");
+		}
+		
+		
 
-六、运行界面
+		return jo;
+	}
+```
+
+七、运行界面
 ------- 
 - 后台登录（默认用户名：sa 密码：1）
 
