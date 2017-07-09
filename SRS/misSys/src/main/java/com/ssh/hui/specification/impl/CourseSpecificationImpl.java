@@ -1,8 +1,14 @@
 package com.ssh.hui.specification.impl;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 
 import com.ssh.hui.domain.model.Course;
+import com.ssh.hui.domain.model.Section;
+import com.ssh.hui.domain.model.Student;
+import com.ssh.hui.domain.model.TranscriptEntry;
 import com.ssh.hui.specification.Specification;
 
 /** 
@@ -22,12 +28,21 @@ public class CourseSpecificationImpl implements Specification {
 	}
 	
 	/**
-	 * 先修课程是否通过
+	 * 课程是否通过
 	 * */
-	public boolean isPass(Course c){
-		for(Course pre:c.getPrerequisites()){
+	public boolean isCoursePass(Course c,Student s){
+		return s.getTranscript().verifyCompletion(c);
+	}
+
+	@Override
+	public boolean isPassPrerequisites(Set<Course> prerequisites,Student s) {
+		for(Course c:prerequisites){//判断先修课是否通过				
+			if(!isCoursePass(c,s)){//如果有一门未通过
+				return false;
+			}			
 			
 		}
-		return false;
+		return true;
 	}
+
 }

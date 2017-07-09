@@ -1,10 +1,14 @@
 package com.ssh.hui.service.impl;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.ssh.hui.domain.model.Course;
+import com.ssh.hui.domain.model.PlanOfStudy;
 import com.ssh.hui.domain.model.Section;
 import com.ssh.hui.domain.model.Student;
 import com.ssh.hui.domain.model.Transcript;
@@ -32,22 +36,45 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 	}
 
 	@Override
-	public void chooseCourse(Student s, int sectionId) {		
+	public JSONObject chooseCourse(Student s, int sectionId) {	
+		JSONObject jo=new JSONObject();			
+		jo.put("status", "ok");
 		Section st=sectionDao.get(sectionId);//获得该section
-		if(courseSpecificationImpl.hasPrerequisites(st.getRepresentedCourse())){//判断是否有先修课
-			for(Course c:st.getRepresentedCourse().getPrerequisites()){
+		int capacitySize=st.getSeatingCapacity();
+		PlanOfStudy pos=planOfStudyDao.getByStu(s);
+		if(pos.isPlanCourse(st.getRepresentedCourse())){
+			if(capacitySize>0){//是否有余量
+				st.setSeatingCapacity(capacitySize-1);//余量-1
+				Course crs= st.getRepresentedCourse();
+				if(courseSpecificationImpl.hasPrerequisites(crs)){//判断是否有先修课
+					if(courseSpecificationImpl.isPassPrerequisites(crs.getPrerequisites(),s)){
+						Student ns=studentDao.get(s.getId());
+						sectionDao.update(st);
+						ns.addSection(st);
+						transcriptEntryDao.save(new TranscriptEntry(ns,null,st));						
+						studentDao.update(ns);					
+					}else{
+						jo.put("status", "noPass");
+					}
+					
+				}else{
+					Student ns=studentDao.get(s.getId());
+					sectionDao.update(st);
+					ns.addSection(st);
+					transcriptEntryDao.save(new TranscriptEntry(ns,null,st));						
+					studentDao.update(ns);				
+				};
+			}else{
+				jo.put("status", "noCapacity");
 				
 			}
-			
 		}else{
-			Student ns=studentDao.get(s.getId());
-			ns.addSection(st);
-			transcriptEntryDao.save(new TranscriptEntry(ns,null,st));						
-			studentDao.update(ns);
-			
-		};
-
+			jo.put("status", "noPlan");
+		}
 		
+		
+
+		return jo;
 	}
 
 	@Override

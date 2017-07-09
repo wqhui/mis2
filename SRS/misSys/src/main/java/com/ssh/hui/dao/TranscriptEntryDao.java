@@ -1,5 +1,8 @@
 package com.ssh.hui.dao;
 
+import java.util.List;
+
+import com.ssh.hui.domain.model.Section;
 import com.ssh.hui.domain.model.Student;
 import com.ssh.hui.domain.model.TranscriptEntry;
 
@@ -10,6 +13,15 @@ import com.ssh.hui.domain.model.TranscriptEntry;
  **/
 public interface TranscriptEntryDao extends BaseDao<TranscriptEntry>{
 
-	TranscriptEntry getByStu(Student sd);
+
+	List<TranscriptEntry> queryByStu(Student s);
+
+	/**
+	 * 查询学生成绩
+	 * @param sd
+	 * @param s
+	 * @return
+	 */
+	TranscriptEntry getByStuAndSection(Student sd, Section s);
 
 }

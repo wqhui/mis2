@@ -42,7 +42,7 @@ public class StudentAction extends BaseAction<Student>{
 	private Set<Section> attends=new HashSet<Section>();
 	private PlanOfStudy planOfStudy;
 	private Department department;
-	
+	Thread t = Thread.currentThread();
 	/**
 	 * 登录
 	 * @param loginName
@@ -91,20 +91,21 @@ public class StudentAction extends BaseAction<Student>{
 	 * @return
 	 */
 	public String chooseCourse(){
+		t.setName("单线程");
+		System.out.println(t.getName() +t.getState());
 		try {
-			if(sectionId>0){
-				Student s=new Student();
-				id=(int) session.get("studentId");
-				System.out.println(id);
-				s.setId(id);
-				studentService.chooseCourse(s,sectionId);
-				jsonObject.put("status", "ok");
+			if (sectionId > 0) {
+
+				id = (int) session.get("studentId");
+				Student s = studentService.get(id);
+				jsonObject = studentService.chooseCourse(s, sectionId);
+				System.out.println(jsonObject.get("status"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonObject.put("status", "error");
 		}
-
+		
 		return "jsonObject";
 	}
 	
@@ -221,8 +222,5 @@ public class StudentAction extends BaseAction<Student>{
 	public void setSectionId(int sectionId) {
 		this.sectionId = sectionId;
 	}
-	
-	
-	
-	
+
 }

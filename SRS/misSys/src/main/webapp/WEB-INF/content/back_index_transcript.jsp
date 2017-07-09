@@ -184,7 +184,7 @@
 			            render: function(data, type, row, meta) {
 			            	var showHtml=''
 			            	if(row.grade==""){
-				            	showHtml='<button class="btn  green" onclick="setModal('+row.studentId+')">'
+				            	showHtml='<button class="btn  green" onclick="setModal('+row.studentId+','+row.sectionId+')">'
 	                            +          	'<i class="fa fa-ok">确认提交 </i>'
 	                            +      '</button>' 
 			            	}else{
@@ -226,7 +226,7 @@
 			});
 		}
 		
-		function setModal(studentId){
+		function setModal(studentId,sectionId){
 			var inputId="#stuGrade"+studentId;
 			var inputValue=$(inputId).val();
 			if(typeof(inputValue)!="undefined" && inputValue!=""){
@@ -236,7 +236,8 @@
 	                dataType:"json",
 	                data:{
 	                	studentId:studentId,
-	                	grade:inputValue
+	                	grade:inputValue,
+	                	sectionId:sectionId
 	                 },	  
 	                success:function(data){   
 	                    if(data.status=="ok"){

@@ -8,7 +8,7 @@ public interface StudentService extends BaseService<Student>{
 
 	Student loginJudgment(Student s);
 
-	void chooseCourse(Student s, int sectionId);
+	JSONObject chooseCourse(Student s, int sectionId);
 
 	JSONObject getTranscriptByStu(Student s);
 

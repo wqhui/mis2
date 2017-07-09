@@ -4,6 +4,7 @@ import com.ssh.hui.domain.model.Course;
 import com.ssh.hui.domain.model.Professor;
 import com.ssh.hui.domain.model.ScheduleOfClasses;
 import com.ssh.hui.domain.model.Section;
+import com.ssh.hui.domain.model.Student;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -44,7 +45,27 @@ public class SectionAction extends BaseAction<Section>{
 	}
 	
 	/**
-	 * 根据教师查询section
+	 * 学生选课查询
+	 * @return 列表
+	 */
+	public String queryListToStu(){
+		id=(int) session.get("studentId");
+		if(id>0){
+			Student s=studentService.get(id);
+			if(null!=s){
+				jsonObject=sectionService.queryListToStu(s);
+				return "jsonObject";
+			}
+		}else{
+			jsonObject.put("recordsTotal", 0);
+			jsonObject.put("data", "[]");
+		}
+		
+		return "jsonObject";
+	}
+	
+	/**
+	 * 排除学生已选section
 	 * @return 列表
 	 */
 	public String queryListByProfessor(){
@@ -61,6 +82,9 @@ public class SectionAction extends BaseAction<Section>{
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	public String queryStuMsgListById(){
 		if(id>0){
 			jsonObject=sectionService.queryStuMsgListById(id);

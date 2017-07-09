@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.ssh.hui.dao.SectionDao;
 import com.ssh.hui.domain.model.Professor;
 import com.ssh.hui.domain.model.Section;
+import com.ssh.hui.domain.model.Student;
 
 /** 
  * @author hui 
@@ -22,5 +23,6 @@ public class SectionDaoImpl extends BaseDaoImpl<Section> implements SectionDao{
 		String hql="select s from Section s where s.instructor=:instructor";		
 		return getSession().createQuery(hql).setParameter("instructor", instructor).list();
 	}
+
 
 }

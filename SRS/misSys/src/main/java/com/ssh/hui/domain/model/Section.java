@@ -486,4 +486,44 @@ public class Section {
 		return rjo;
 	}
 
+	/**
+	 * 排除相关学生的课程
+	 * @param sList
+	 * @param stuList
+	 * @return
+	 */
+	public JSONObject matchListExStu(List<Section> sList, List<TranscriptEntry> stuList) {
+		JSONObject rjo=new JSONObject();
+		JSONArray ja=new JSONArray();
+		int size=sList.size();//记录条数		
+		for(Section s:sList){
+			boolean pd=false;//表示未选该门课
+			JSONObject jo=new JSONObject();
+			jo.put("id", s.getId());
+			jo.put("sectionNo", s.getSectionNo());
+			jo.put("representedCourse", s.getRepresentedCourse().getCourseName());
+			jo.put("instructor", s.getInstructor().getRealName());
+			jo.put("seatingCapacity", s.getSeatingCapacity());			
+			jo.put("timeOfDay", s.getTimeOfDay());//时间
+			jo.put("dayOfWeek", s.getDayOfWeek());//周几
+			jo.put("room", s.getRoom());//教室	
+			for(TranscriptEntry te:stuList){
+				if(s.getId()==te.getSection().getId()){
+					jo.clear();//如果学生选过这门课，就不显示
+					size--;//且记录数-1
+					pd=true;//表示已选
+					break;
+				}
+			}
+			if(!pd){
+				ja.add(jo);
+			}
+			
+		}
+		rjo.put("recordsTotal",size);
+		rjo.put("data", ja.toString());
+		return rjo;
+		
+	}
+
 }

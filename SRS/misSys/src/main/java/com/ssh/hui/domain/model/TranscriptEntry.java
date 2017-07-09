@@ -121,23 +121,24 @@ public class TranscriptEntry {
 	 * */
 	public static boolean validateGrade(String grade) {
 		boolean outcome = false;
-
-		if (grade.equals("F") ||
-		    grade.equals("I")) {
-			outcome = true;
-		}
-
-		if (grade.startsWith("A") ||
-		    grade.startsWith("B") ||
-		    grade.startsWith("C") ||
-		    grade.startsWith("D")) {
-			if (grade.length() == 1) outcome = true;
-			else if (grade.length() == 2) {
-				if (grade.endsWith("+") ||
-				    grade.endsWith("-")) {
+		if(null!=grade){
+			if (grade.equals("F") ||
+				    grade.equals("I")) {
 					outcome = true;
 				}
-			}
+
+				if (grade.startsWith("A") ||
+				    grade.startsWith("B") ||
+				    grade.startsWith("C") ||
+				    grade.startsWith("D")) {
+					if (grade.length() == 1) outcome = true;
+					else if (grade.length() == 2) {
+						if (grade.endsWith("+") ||
+						    grade.endsWith("-")) {
+							outcome = true;
+						}
+					}
+				}
 		}
 
 		return outcome;

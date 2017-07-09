@@ -73,7 +73,7 @@
 		function loadProList(){
 			$('#proListTable').dataTable( {
 				"ajax": {
-				    "url": "${pageContext.request.contextPath}/base/section_queryList",
+				    "url": "${pageContext.request.contextPath}/base/section_queryListToStu",
 				    "type": "POST",
 				    "data": function ( d ) {
 
@@ -136,8 +136,14 @@
                 success:function(data){   
                     if(data.status=="ok"){
 						successModal();
+                    }else if(data.status=="noPlan"){
+                    	courseErrorModal("不在学习计划内");
+                    }else if(data.status=="noPass"){
+                    	courseErrorModal("先修课程未修或者未通过");
+                    }else if(data.status=="noCapacity"){
+                    	courseErrorModal("没有容量了");
                     }else{
-                    	 errorModal();
+                    	errorModal();
                     }
                 }
             })
@@ -165,6 +171,16 @@
             })
 		}
 		
+		
+		function courseErrorModal(content){
+			swal({
+				title: "出错!",
+				text: '<span style="color:#F8BB86">'+content+'</span>',
+				type: "error",
+				html:true,
+				confirmButtonText: "确认"  
+			});	
+		}
 	
 		
 		

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ssh.hui.dao.PlanOfStudyDao;
 import com.ssh.hui.domain.model.PlanOfStudy;
+import com.ssh.hui.domain.model.Student;
 
 /** 
  * @author hui 
@@ -12,5 +13,11 @@ import com.ssh.hui.domain.model.PlanOfStudy;
  **/
 @Repository("planOfStudyDao")
 public class PlanOfStudyDaoImpl extends BaseDaoImpl<PlanOfStudy> implements PlanOfStudyDao{
+
+	@Override
+	public PlanOfStudy getByStu(Student s) {
+		String hql="select p from PlanOfStudy p where p.theDepartment=:theDepartment";
+		return  (PlanOfStudy) getSession().createQuery(hql).setParameter("theDepartment", s.getDepartment()).uniqueResult();
+	}
 
 }

@@ -13,6 +13,10 @@ import net.sf.json.JSONObject;
  * @date 创建时间：2017年7月1日 下午10:31:29 吴清辉新建
  * @version 1.0 
  **/
+/**
+ * @author hui
+ *
+ */
 public class TranscriptEntryAction extends BaseAction<TranscriptEntry>{
 	/**
 	 * 
@@ -23,16 +27,22 @@ public class TranscriptEntryAction extends BaseAction<TranscriptEntry>{
 	
 	private int id;
 	private int studentId;
+	private int sectionId;
 	private String grade;//成绩
 	private Section section;
 	private Transcript transcript;
 	private Student student;
 	
+	/**
+	 * 设置成绩
+	 * @return
+	 */
 	public String setGradeByStu(){
 		try {
 			student=studentService.get(studentId);
-			if(null!=student){
-				transcriptEntryService.setGradeByStu(student,grade);
+			section=sectionService.get(sectionId);
+			if(null!=student && null!=section){
+				transcriptEntryService.setGradeByStu(student,section,grade);
 				jsonObject.put("status", "ok");	
 			}else{
 				jsonObject.put("status", "error");		
@@ -93,6 +103,16 @@ public class TranscriptEntryAction extends BaseAction<TranscriptEntry>{
 	}
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
+	}
+
+
+	public int getSectionId() {
+		return sectionId;
+	}
+
+
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
 	}
 	
 	

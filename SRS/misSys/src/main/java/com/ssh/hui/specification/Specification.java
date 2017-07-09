@@ -1,6 +1,12 @@
 package com.ssh.hui.specification;
 
+import java.util.List;
+import java.util.Set;
+
 import com.ssh.hui.domain.model.Course;
+import com.ssh.hui.domain.model.Section;
+import com.ssh.hui.domain.model.Student;
+import com.ssh.hui.domain.model.TranscriptEntry;
 
 /** 
  * @author hui 
@@ -8,5 +14,26 @@ import com.ssh.hui.domain.model.Course;
  * @version 1.0 
  **/
 public interface Specification {
+	
+	/**
+	 * 是否有先修课
+	 * @param c
+	 * @return
+	 */
 	boolean hasPrerequisites(Course c);
+	
+	 /**
+	 * @param c
+	 * @param s
+	 * @return
+	 */
+	boolean isCoursePass(Course c,Student s);
+
+	/**
+	 * 先修课是否通过
+	 * @param prerequisites
+	 * @param s
+	 * @return
+	 */
+	boolean isPassPrerequisites(Set<Course> prerequisites,Student s);
 }

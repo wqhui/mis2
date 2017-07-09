@@ -1,6 +1,7 @@
 package com.ssh.hui.dao;
 
 import com.ssh.hui.domain.model.PlanOfStudy;
+import com.ssh.hui.domain.model.Student;
 
 /** 
  * @author hui 
@@ -8,5 +9,7 @@ import com.ssh.hui.domain.model.PlanOfStudy;
  * @version 1.0 
  **/
 public interface PlanOfStudyDao extends BaseDao<PlanOfStudy>{
+
+	PlanOfStudy getByStu(Student s);
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ssh.hui.domain.model.Professor;
 import com.ssh.hui.domain.model.Section;
+import com.ssh.hui.domain.model.Student;
 
 /** 
  * @author hui 
@@ -13,5 +14,6 @@ import com.ssh.hui.domain.model.Section;
 public interface SectionDao extends BaseDao<Section>{
 
 	List<Section> queryListByProfessor(Professor instructor);
+
 
 }

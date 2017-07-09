@@ -38,10 +38,11 @@ public class SectionServiceImpl extends BaseServiceImpl<Section> implements Sect
 		JSONArray ja=new JSONArray();
 		for(Student sd:s.getEnrolledStudents()){			
 			JSONObject jo=new JSONObject();
+			jo.put("sectionId", id);
 			jo.put("studentId", sd.getId());
 			jo.put("ssn", sd.getSsn());
 			jo.put("realName", sd.getRealName());
-			TranscriptEntry ts= transcriptEntryDao.getByStu(sd);
+			TranscriptEntry ts= transcriptEntryDao.getByStuAndSection(sd,s);
 			if(null!=ts && null!=ts.getGrade()){
 				jo.put("grade", ts.getGrade());
 			}else{
@@ -53,6 +54,17 @@ public class SectionServiceImpl extends BaseServiceImpl<Section> implements Sect
 		rjo.put("recordsTotal", s.getEnrolledStudents().size());
 		rjo.put("data", ja.toString());
 		return rjo;
+	}
+
+	@Override
+	public JSONObject queryListToStu(Student s) {
+		JSONObject jo=new JSONObject();
+		List<Section>sList=sectionDao.queryAll();
+		List<TranscriptEntry> stuList=transcriptEntryDao.queryByStu(s);
+		Section ms=new Section();
+		jo=ms.matchListExStu(sList,stuList);
+		return jo;
+		
 	}
 
 }
