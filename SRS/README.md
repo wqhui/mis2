@@ -109,6 +109,15 @@
 
 ![学生选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/stu_section.png)
 
+	先修课未通过
+![学生选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/noPass.png)
+
+	不在学习计划内
+![学生选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/noPlan.png)
+
+	没有容量
+![学生选课](https://github.com/DeathKL/mis2/blob/master/SRS/Img/noSeat.png)
+
 - 学生成绩
 
 ![学生成绩](https://github.com/DeathKL/mis2/blob/master/SRS/Img/transcript.png)
